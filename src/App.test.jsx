@@ -2,7 +2,15 @@ import { render } from '@testing-library/react';
 
 import App from './App';
 
-test('App', () => {
+jest.mock('react-redux', () => ({
+  useSelector: jest.fn().mockReturnValue({ newId: 100, taskTitle: '', tasks: [] }),
+  useDispatch: () => jest.fn(),
+}));
+
+describe('App', () => {
+  beforeEach(() => {
+
+  });
   const { getByText } = render((
     <App />
   ));
